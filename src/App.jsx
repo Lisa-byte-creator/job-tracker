@@ -76,9 +76,54 @@ async function handleStatusChange(id, newStatus) {
 
   return (
     <div>
+      <header>
       <h1>HuntHub</h1>
+      <p>Track and manage your job applications</p>
+      </header>
 
-      <form onSubmit={handleSubmit}>
+      <section className="stats">
+
+    <section className='stat-card'>
+
+      <h5>Total</h5>
+      <h4>{applications.length}</h4>
+
+
+    </section>
+
+     <section className='stat-card'>
+      <h5>Applied</h5>
+      <h4>{applications.filter(app => app.status === "applied").length}</h4>
+      
+    </section>
+
+     <section className='stat-card'>
+      <h5>Interview</h5>
+      <h4>{applications.filter(app => app.status === "interview").length}</h4>
+
+      
+    </section>
+
+     <section className='stat-card'>
+
+      <h5>Rejected</h5>
+      <h4>{applications.filter(app => app.status === "rejected").length}</h4>
+
+    </section>
+
+      <section className='stat-card'>
+
+      <h5>Offer</h5>
+      <h4>{applications.filter(app => app.status === "offer").length}</h4>
+
+    </section>
+
+</section>
+<main>
+<section className="card">
+      <h4>Add an Application</h4>
+<section className ="add-an-application">
+      <form className='application-form' onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Company name"
@@ -105,42 +150,78 @@ async function handleStatusChange(id, newStatus) {
           value={formData.job_link}
           onChange={(e) => setFormData({ ...formData, job_link: e.target.value })}
         />
-        <textarea
+        <textarea className='Notes'
           placeholder="Notes (optional)"
           value={formData.notes}
           onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
         />
-        <button type="submit">Add application</button>
+        <button className='submitting' type="submit">Add application</button>
       </form>
+      </section>
+</section>
 
+
+<section className="card">
+<h4>My Applications</h4>
+<section className = "my-applications">
+    
+ 
       {applications.length === 0 ? (
-        <p>No applications yet.</p>
+        <p>No job applications yet.</p>
       ) : (
         <ul>
           {applications.map((app) => (
-            <li key={app.id}>
-  <strong>{app.company_name}</strong> — {app.role_title}
+            <li className="application-card" key={app.id}>
+  <h3>{app.company_name}</h3>
 
-  <select
-  className={`status ${app.status}`}
-    value={app.status}
-    onChange={(e) => handleStatusChange(app.id, e.target.value)}
-  >
-    <option value="applied">Applied</option>
-    <option value="interview">Interview</option>
-    <option value="offer">Offer</option>
-    <option value="rejected">Rejected</option>
-  </select>
+  <p>{app.role_title}</p>
 
-  <button onClick={() => handleDelete(app.id)}>
-    Delete
-  </button>
+    <p>Date Applied: {app.date_applied}</p>
+
+    {app.job_link && (
+  <p>
+    <a
+      href={app.job_link}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      🔗 View Job
+    </a>
+  </p>
+)}
+
+  <div className="application-actions">
+    <select
+      className={`status ${app.status}`}
+      value={app.status}
+      onChange={(e) => handleStatusChange(app.id, e.target.value)}
+    >
+  
+
+      <option value="applied">Applied</option>
+      <option value="interview">Interview</option>
+      <option value="offer">Offer</option>
+      <option value="rejected">Rejected</option>
+    </select>
+
+    
+
+    <button onClick={() => handleDelete(app.id)}>
+      Delete
+    </button>
+  </div>
 </li>
           ))}
         </ul>
       )}
-    </div>
+      </section>
+      </section>
+    
+      </main>
+</div>
   )
+  
 }
+
 
 export default App
