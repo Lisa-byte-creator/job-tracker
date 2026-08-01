@@ -66,13 +66,13 @@ A job application tracker built with React and Supabase. Add, Update and monitor
    ```
 
 ## Live Demo
-
+https://job-tracker-indol-ten.vercel.app
 
 
 ## Screenshots
 
-
-
+<img width="1124" height="743" alt="Screenshot 2026-08-01 at 21 24 26" src="https://github.com/user-attachments/assets/741dc137-0721-4755-bfdb-33effe582649" />
+<img width="1128" height="649" alt="Screenshot 2026-08-01 at 21 26 14" src="https://github.com/user-attachments/assets/01982e1a-1d50-4ee2-a738-04f6fadea1d5" />
 
 
 ## Author
