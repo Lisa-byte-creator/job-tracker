@@ -85,7 +85,7 @@ function App() {
     const today = new Date();
     const diffMs = today - applied;
     const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-    return Math.max(diffDays, 0)
+    return Math.max(diffDays, 0);
   }
 
   return (

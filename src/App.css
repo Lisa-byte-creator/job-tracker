@@ -220,3 +220,35 @@ button.submitting {
   font-size: 0.85rem;
   color: #888;
 }
+
+@media (max-width: 600px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card1,
+  .card2 {
+    max-width: 92%;
+    padding: 16px;
+  }
+
+  .application-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .application-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .application-form {
+    grid-template-columns: 1fr;
+  }
+
+  .submitting,
+  .submitting .Notes {
+    grid-column: 1 / 2;
+  }
+}
