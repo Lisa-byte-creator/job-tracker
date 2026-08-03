@@ -88,6 +88,15 @@ function App() {
     return Math.max(diffDays, 0);
   }
 
+  function formatDate(dateString) {
+    const [year, month, day] = dateString.split("-").map(Number);
+
+    return new Date(year, month - 1, day).toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
+  }
   return (
     <div>
       <header>
@@ -154,7 +163,10 @@ function App() {
                 type="date"
                 value={formData.date_applied}
                 onChange={(e) =>
-                  setFormData({ ...formData, date_applied: e.target.value })
+                  setFormData({
+                    ...formData,
+                    date_applied: e.target.value,
+                  })
                 }
                 required
               />
@@ -190,19 +202,47 @@ function App() {
               <ul>
                 {applications.map((app) => (
                   <li className="application-card" key={app.id}>
-                    <div className="application-info">
-                      <span className="company">{app.company_name}</span>
+                    <div className="card-header">
+                      <div>
+                        <h3 className="company">{app.company_name}</h3>
+                        <p className="role">{app.role_title}</p>
+                      </div>
 
-                      <span>- {app.role_title}</span>
+                      <div className="application-actions">
+                        <select
+                          value={app.status}
+                          onChange={(e) =>
+                            handleStatusChange(app.id, e.target.value)
+                          }
+                          className={`status-select ${app.status}`}
+                        >
+                          <option value="applied">Applied</option>
+                          <option value="interview">Interview</option>
+                          <option value="offer">Offer</option>
+                          <option value="rejected">Rejected</option>
+                        </select>
 
-                      <span className="date">Applied: {app.date_applied}</span>
-                      <span className="days-ago">
-                        ({daysSince(app.date_applied)} day
-                        {daysSince(app.date_applied) === 1 ? "" : "s"} ago)
-                      </span>
-                      {app.notes && (
-                        <span className="display-notes"> - {app.notes}</span>
-                      )}
+                        <button
+                          className="delete-btn"
+                          onClick={() => handleDelete(app.id)}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="card-body">
+                      <p className="date">
+                        📅 Applied {formatDate(app.date_applied)}
+                        <span className="days-ago">
+                          {" "}
+                          • {daysSince(app.date_applied)} day
+                          {daysSince(app.date_applied) === 1 ? "" : "s"} ago
+                        </span>
+                      </p>
+
+                      {app.notes && <p className="notes">📝 {app.notes}</p>}
+
                       {app.job_link && (
                         <a
                           href={app.job_link}
@@ -213,25 +253,6 @@ function App() {
                           🔗 View Job
                         </a>
                       )}
-                    </div>
-
-                    <div className="application-actions">
-                      <select
-                        value={app.status}
-                        onChange={(e) =>
-                          handleStatusChange(app.id, e.target.value)
-                        }
-                        className={`status ${app.status}`}
-                      >
-                        <option value="applied">Applied</option>
-                        <option value="interview">Interview</option>
-                        <option value="offer">Offer</option>
-                        <option value="rejected">Rejected</option>
-                      </select>
-
-                      <button onClick={() => handleDelete(app.id)}>
-                        Delete
-                      </button>
                     </div>
                   </li>
                 ))}
