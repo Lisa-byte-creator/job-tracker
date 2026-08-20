@@ -1,3 +1,4 @@
+
 # HuntHub
 
 A job application tracker built with React and Supabase. Add, Update and monitor job applications in one place. No more Spreadsheets!.
@@ -71,9 +72,8 @@ https://job-tracker-indol-ten.vercel.app
 
 ## Screenshots
 
-<img width="1124" height="743" alt="Screenshot 2026-08-01 at 21 24 26" src="https://github.com/user-attachments/assets/741dc137-0721-4755-bfdb-33effe582649" />
-<img width="1128" height="649" alt="Screenshot 2026-08-01 at 21 26 14" src="https://github.com/user-attachments/assets/01982e1a-1d50-4ee2-a738-04f6fadea1d5" />
-
+<img width="1126" height="784" alt="HuntHub Application Form" src="https://github.com/user-attachments/assets/cbc5e289-cd81-499f-8601-07d0998dae22" />
+<img width="1124" height="782" alt="HuntHub Application Form" src="https://github.com/user-attachments/assets/4addf60f-6363-4687-a6b5-61396f82c8b6" />
 
 ## Author
 
